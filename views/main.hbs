@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>PrivChat</title>
+  <style>
+    /* Global Styles */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #121212;
+      color: #e0e0e0;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      background-color: #222;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+
+    nav a {
+      color: #fff;
+      font-size: 1.2em;
+      text-decoration: none;
+      margin: 0 25px;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    nav a:hover {
+      color: #ff9a9e;
+      background-color: #444;
+      transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+    }
+
+    /* Header */
+    header {
+      padding: 120px 20px 40px;
+      text-align: center;
+      background: linear-gradient(135deg, #6e7aeb, #f9715f);
+      color: white;
+      border-bottom: 3px solid #444;
+    }
+
+    h1.gradient-text {
+      font-size: 4.5em;
+      font-weight: bold;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      margin: 0;
+    }
+
+    p.tagline {
+      font-size: 1.2em;
+      color: #f0f0f0;
+      margin-top: 10px;
+      font-weight: 300;
+      position: relative;
+      left: 39%;
+    }
+
+    /* Main Content */
+    .content {
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 2.2em;
+      color: #fff;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    /* Features Section */
+    .features-container {
+      display: flex;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 40px;
+      padding: 0 20px;
+    }
+
+    .feature {
+      background-color: #1a1a1a;
+      border-radius: 10px;
+      padding: 30px;
+      width: 30%;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease-in-out;
+      margin-bottom: 20px;
+    }
+
+    .feature:hover {
+      transform: translateY(-5px);
+      background-color: #292929;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-bottom: 8px;
+      color: #f8f8f8;
+    }
+
+    p {
+      color: #ccc;
+      font-size: 1.1em;
+      margin: 0;
+      text-align: left;
+    }
+
+    /* Call to Action */
+    .cta {
+      margin: 60px auto;
+      padding: 20px;
+      background: linear-gradient(135deg, #6e7aeb, #f9715f);
+      color: white;
+      border-radius: 10px;
+      max-width: 600px;
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    .cta p {
+      font-size: 1.2em;
+    }
+
+    .cta button {
+      background-color: #f9715f;
+      border: none;
+      color: white;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+
+    .cta button:hover {
+      background-color: #ff9a9e;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    /* Footer */
+    footer {
+      padding: 40px 20px;
+      font-size: 0.9em;
+      color: #aaa;
+      background-color: #1a1a1a;
+      text-align: center;
+      border-top: 3px solid #444;
+      justify-items: center;
+    }
+
+    footer p {
+      margin: 0;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      nav a {
+        margin: 10px 0;
+      }
+
+      header {
+        padding: 100px 15px 40px;
+      }
+
+      h1.gradient-text {
+        font-size: 3em;
+      }
+
+      p.tagline {
+        font-size: 1em;
+      }
+
+      .content {
+        padding: 60px 20px;
+      }
+
+      .features-container {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .feature {
+        width: 80%;
+        margin-bottom: 40px;
+      }
+
+      .cta {
+        padding: 30px 20px;
+      }
+
+      .cta h2 {
+        font-size: 1.8em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <a href="#">Home</a>
+    <a href="#features">Features</a>
+    <a href="#contact">Contact</a>
+    <a href="/login" class="cta-btn">Login</a>
+  </nav>
+
+  <!-- Header -->
+  <header>
+    <h1 class="gradient-text">PrivChat</h1>
+    <p class="tagline">Private. Secure. Effortless Communication.</p>
+  </header>
+
+  <!-- Main Content -->
+  <main class="content">
+    <section id="features">
+      <h2 class="section-title">Our Features</h2>
+
+      <div class="features-container">
+        <div class="feature">
+          <label>Encryption</label>
+          <p>PrivChat uses end-to-end encryption to ensure your conversations remain confidential.</p>
+        </div>
+
+        <div class="feature">
+          <label>Cross-Platform</label>
+          <p>Access your chats from any device, anytime, anywhere.</p>
+        </div>
+
+        <div class="feature">
+          <label>User-Friendly Design</label>
+          <p>Enjoy a clean interface built for speed and ease of use.</p>
+        </div>
+
+        <div class="feature">
+          <label>Severless</label>
+          <p>PrivChat uses no server to store your data, for providing a secure and confidential experience.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section id="get-started" class="cta">
+      <h2>Get Started with PrivChat</h2>
+      <p>Join thousands of users who trust PrivChat for secure and private messaging.</p>
+      <button>Get Started</button>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <p>&copy; 2025 PrivChat. All rights reserved.</p>
+  </footer>
+</body>
+</html>
