@@ -4,53 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PrivChat</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        /* Removed gradient animation keyframes */
+
+        /* Apply Inter font and a plain background color globally */
         body {
-            background-color: #f8f9fa;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            font-family: 'Inter', sans-serif;
+            /* Plain background color matching the dark theme */
+            background-color: #0f172a; /* Dark blue-gray */
+            color: #e0e0e0; /* Default text color for dark background */
         }
-        .container {
-            max-width: 400px;
-            padding: 20px;
-            background: white;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            text-align: center;
+
+        /* Custom shadow for a more pronounced effect */
+        .shadow-3xl {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 15px rgba(0, 0, 0, 0.05);
         }
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            text-align: center;
-        }
-        button {
-            width: 100%;
-            margin-top: 5px;
-        }
-        
-        
     </style>
 </head>
-<body>
+<body class="flex w-full min-h-screen antialiased">
     {{#if username}}
     <input type="hidden" id="username" value="{{username}}">
     {{/if}}
-    <div class="container">
-        <h2 class="mb-3">PrivChat</h2>
-        <p class="text-muted">Enter a 6-8 digit PIN to create or join a chat room.</p>
-        <input type="text" name="pin" id="pin" placeholder="Enter PIN" maxlength="8">
-        <button class="btn btn-primary" id="create-room">Create Room</button>
-        <button class="btn btn-success" id="join-room">Join Room</button>
-    </div>
+
+    <aside class="w-64 bg-[#1e293b] text-white flex flex-col rounded-r-3xl shadow-2xl z-10 h-screen sticky top-0">
+        <div class="p-8 text-4xl font-extrabold text-center border-b border-[#0f172a] bg-[#0f172a] rounded-tr-3xl">
+            <span class="text-[#F2295B]">Priv</span>Chat
+        </div>
+        <nav class="flex-1 p-6 space-y-4">
+            <a href="#" class="flex items-center px-5 py-4 text-[#6b7280] hover:bg-[#f0f0f0] hover:text-[#F2295B] rounded-xl transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-[#F2295B] focus:ring-opacity-50">
+                <svg class="w-7 h-7 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                <span class="text-lg font-medium">P2P Chat</span>
+            </a>
+            <a href="#" class="flex items-center px-5 py-4 text-[#6b7280] hover:bg-[#f0f0f0] hover:text-[#F2295B] rounded-xl transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-[#F2295B] focus:ring-opacity-50">
+                <svg class="w-7 h-7 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h2a2 2 0 002-2V7a2 2 0 00-2-2h-2V3a1 1 0 00-1-1H8a1 1 0 00-1 1v2H5a2 2 0 00-2 2v11a2 2 0 002 2h2m4-11h2m-2 4h2m-2 4h2m-6 0h.01M17 17h.01"></path></svg>
+                <span class="text-lg font-medium">Group Chat</span>
+            </a>
+        </nav>
+        <div class="p-6 text-sm text-[#6b7280] text-center border-t border-[#0f172a]">
+            &copy; 2025 PrivChat. All rights reserved.
+        </div>
+    </aside>
+
+    <main class="flex-1 flex items-center justify-center p-8 relative overflow-hidden">
+        <!-- <div class="absolute inset-0 z-0 opacity-10">
+            <svg class="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                    <pattern id="pattern-circles" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+                        <circle cx="5" cy="5" r="1" fill="#d1d5db" /> </pattern>
+                </defs>
+                <rect x="0" y="0" width="100%" height="100%" fill="url(#pattern-circles)" />
+            </svg>
+        </div> -->
+
+        <div class="bg-[#f8f9fa] p-10 rounded-3xl shadow-3xl max-w-lg w-full text-center border border-[#d1d5db] z-10 transform transition-all duration-500 ease-in-out hover:scale-[1.01] hover:shadow-4xl">
+            <h2 class="text-5xl font-extrabold mb-8 text-[#1a1a1a] leading-tight">Welcome to <span class="text-[#F2295B]">PrivChat</span></h2>
+            <p class="text-[#6b7280] mb-10 text-lg leading-relaxed">
+                Your secure and private communication hub. Enter a 6-8 digit PIN to effortlessly
+                <span class="font-semibold text-[#F2295B]">create</span> or <span class="font-semibold text-[#1f2937]">join</span> a chat room.
+            </p>
+            <input type="text" name="pin" id="pin" placeholder="Enter PIN" maxlength="8"
+                   class="w-full p-5 mb-8 border border-[#d1d5db] rounded-2xl focus:outline-none focus:ring-5 focus:ring-[#F2295B] focus:border-[#F2295B] text-center text-2xl font-medium transition-all duration-300 ease-in-out placeholder-[#9ca3af] shadow-sm hover:shadow-md bg-white text-[#1f2937]">
+            <button id="create-room"
+                    class="w-full bg-gradient-to-r from-[#F2295B] to-[#e01e4f] text-white py-5 px-8 rounded-2xl hover:from-[#e01e4f] hover:to-[#F2295B] focus:outline-none focus:ring-5 focus:ring-[#F2295B] focus:ring-opacity-75 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg mb-6 text-xl font-bold tracking-wide">
+                Create Room
+            </button>
+            <button id="join-room"
+                    class="w-full bg-white text-[#F2295B] py-5 px-8 rounded-2xl hover:bg-gray-100 focus:outline-none focus:ring-5 focus:ring-[#F295B] focus:ring-opacity-75 transition-all duration-300 ease-in-out transform hover:scale-105 shadow-lg text-xl font-bold tracking-wide">
+                Join Room
+            </button>
+        </div>
+    </main>
 
     <script src="/js/main.js"></script>
-
 </body>
 </html>

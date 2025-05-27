@@ -1,285 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PrivChat</title>
-  <style>
-    /* Global Styles */
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #121212;
-      color: #e0e0e0;
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>PrivChat - Private. Secure. Effortless Communication.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS for animations and refined styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Subtle animated gradient background */
+            background: linear-gradient(135deg, #0f172a, #1e293b, #0f172a); /* Dark blue-gray gradient */
+            background-size: 400% 400%; /* Larger size for smooth animation */
+            animation: gradient-shift 15s ease infinite; /* Apply gradient animation */
+            color: #e2e8f0; /* Light text color for dark background */
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
 
-    /* Navbar */
-    nav {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      background-color: #222;
-      position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      z-index: 100;
-    }
+        /* Keyframe animation for the background gradient */
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-    nav a {
-      color: #fff;
-      font-size: 1.2em;
-      text-decoration: none;
-      margin: 0 25px;
-      padding: 10px;
-      border-radius: 5px;
-    }
+        /* Custom shadow for a more premium feel */
+        .shadow-custom-lg {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4), 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .shadow-custom-xl {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 0, 0, 0.3);
+        }
 
-    nav a:hover {
-      color: #ff9a9e;
-      background-color: #444;
-      transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
-    }
+        /* Animation for elements fading in */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s ease-out forwards;
+        }
+        .fade-in-1 { animation-delay: 0.2s; }
+        .fade-in-2 { animation-delay: 0.4s; }
+        .fade-in-3 { animation-delay: 0.6s; }
+        .fade-in-4 { animation-delay: 0.8s; }
+        .fade-in-5 { animation-delay: 1.0s; }
 
-    /* Header */
-    header {
-      padding: 120px 20px 40px;
-      text-align: center;
-      background: linear-gradient(135deg, #6e7aeb, #f9715f);
-      color: white;
-      border-bottom: 3px solid #444;
-    }
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    h1.gradient-text {
-      font-size: 4.5em;
-      font-weight: bold;
-      background: linear-gradient(to right, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-fill-color: transparent;
-      margin: 0;
-    }
+        /* Gradient text for the main heading */
+        .text-gradient-hero {
+            /* Changed to white color as requested */
+            color: white;
+            /* Removed gradient background properties */
+            -webkit-background-clip: unset;
+            background-clip: unset;
+            background-image: none;
+        }
 
-    p.tagline {
-      font-size: 1.2em;
-      color: #f0f0f0;
-      margin-top: 10px;
-      font-weight: 300;
-      position: relative;
-      left: 39%;
-    }
-
-    /* Main Content */
-    .content {
-      padding: 80px 20px;
-      max-width: 1200px;
-      margin: auto;
-      text-align: center;
-    }
-
-    .section-title {
-      font-size: 2.2em;
-      color: #fff;
-      margin-bottom: 20px;
-      font-weight: 600;
-    }
-
-    /* Features Section */
-    .features-container {
-      display: flex;
-      justify-content: space-evenly;
-      flex-wrap: wrap;
-      gap: 15px;
-      margin-top: 40px;
-      padding: 0 20px;
-    }
-
-    .feature {
-      background-color: #1a1a1a;
-      border-radius: 10px;
-      padding: 30px;
-      width: 30%;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      transition: all 0.3s ease-in-out;
-      margin-bottom: 20px;
-    }
-
-    .feature:hover {
-      transform: translateY(-5px);
-      background-color: #292929;
-    }
-
-    label {
-      display: block;
-      font-weight: bold;
-      font-size: 1.2em;
-      margin-bottom: 8px;
-      color: #f8f8f8;
-    }
-
-    p {
-      color: #ccc;
-      font-size: 1.1em;
-      margin: 0;
-      text-align: left;
-    }
-
-    /* Call to Action */
-    .cta {
-      margin: 60px auto;
-      padding: 20px;
-      background: linear-gradient(135deg, #6e7aeb, #f9715f);
-      color: white;
-      border-radius: 10px;
-      max-width: 600px;
-      text-align: center;
-    }
-
-    .cta h2 {
-      font-size: 2em;
-      margin-bottom: 10px;
-    }
-
-    .cta p {
-      font-size: 1.2em;
-    }
-
-    .cta button {
-      background-color: #f9715f;
-      border: none;
-      color: white;
-      padding: 15px 30px;
-      font-size: 1.2em;
-      border-radius: 10px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-
-    .cta button:hover {
-      background-color: #ff9a9e;
-      transition: background-color 0.3s ease-in-out;
-    }
-
-    /* Footer */
-    footer {
-      padding: 40px 20px;
-      font-size: 0.9em;
-      color: #aaa;
-      background-color: #1a1a1a;
-      text-align: center;
-      border-top: 3px solid #444;
-      justify-items: center;
-    }
-
-    footer p {
-      margin: 0;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      nav {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      nav a {
-        margin: 10px 0;
-      }
-
-      header {
-        padding: 100px 15px 40px;
-      }
-
-      h1.gradient-text {
-        font-size: 3em;
-      }
-
-      p.tagline {
-        font-size: 1em;
-      }
-
-      .content {
-        padding: 60px 20px;
-      }
-
-      .features-container {
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .feature {
-        width: 80%;
-        margin-bottom: 40px;
-      }
-
-      .cta {
-        padding: 30px 20px;
-      }
-
-      .cta h2 {
-        font-size: 1.8em;
-      }
-    }
-  </style>
+        /* Responsive adjustments for header tagline */
+        @media (max-width: 768px) {
+            .tagline {
+                text-align: center !important; /* Override Tailwind's left alignment if needed */
+                left: 0 !important; /* Reset left positioning */
+            }
+        }
+    </style>
 </head>
-<body>
-  <!-- Navbar -->
-  <nav>
-    <a href="#">Home</a>
-    <a href="#features">Features</a>
-    <a href="#contact">Contact</a>
-    <a href="/login" class="cta-btn">Login</a>
-  </nav>
+<body class="flex flex-col min-h-screen">
 
-  <!-- Header -->
-  <header>
-    <h1 class="gradient-text">PrivChat</h1>
-    <p class="tagline">Private. Secure. Effortless Communication.</p>
-  </header>
-
-  <!-- Main Content -->
-  <main class="content">
-    <section id="features">
-      <h2 class="section-title">Our Features</h2>
-
-      <div class="features-container">
-        <div class="feature">
-          <label>Encryption</label>
-          <p>PrivChat uses end-to-end encryption to ensure your conversations remain confidential.</p>
+    <nav class="fixed top-0 left-0 w-full bg-gray-900 bg-opacity-80 backdrop-blur-md z-50 py-6 md:py-8 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center px-8 md:px-12">
+            <a href="#" class="text-3xl font-extrabold text-white hover:text-indigo-400 transition-colors duration-300">
+                <span class="text-indigo-500">Priv</span>Chat
+            </a>
+            <div class="space-x-10 hidden md:flex items-center">
+                <a href="#" class="text-gray-300 hover:text-indigo-400 text-xl font-medium transition-colors duration-300">Home</a>
+                <a href="#features" class="text-gray-300 hover:text-indigo-400 text-xl font-medium transition-colors duration-300">Features</a>
+                <a href="#contact" class="text-gray-300 hover:text-indigo-400 text-xl font-medium transition-colors duration-300">Contact</a>
+                <a href="/login" class="px-8 py-3 bg-indigo-600 text-white rounded-full text-xl font-semibold hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105 shadow-md">Login</a>
+            </div>
+            <button class="md:hidden text-white focus:outline-none">
+                <svg class="w-9 h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
         </div>
+    </nav>
 
-        <div class="feature">
-          <label>Cross-Platform</label>
-          <p>Access your chats from any device, anytime, anywhere.</p>
+    <header class="relative flex flex-col items-center justify-center text-center py-40 md:py-56 bg-gradient-to-br from-indigo-700 to-purple-800 text-white overflow-hidden min-h-screen">
+        <div class="absolute inset-0 z-0 opacity-20">
+            <div class="absolute w-96 h-96 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob top-10 left-1/4"></div>
+            <div class="absolute w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000 top-1/2 right-1/4"></div>
+            <div class="absolute w-96 h-96 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000 bottom-10 left-1/3"></div>
         </div>
+        <style>
+            /* Blob animation for hero section */
+            @keyframes blob {
+                0% { transform: translate(0px, 0px) scale(1); }
+                33% { transform: translate(30px, -50px) scale(1.1); }
+                66% { transform: translate(-20px, 20px) scale(0.9); }
+                100% { transform: translate(0px, 0px) scale(1); }
+            }
+            .animate-blob { animation: blob 7s infinite; }
+            .animation-delay-2000 { animation-delay: 2s; }
+            .animation-delay-4000 { animation-delay: 4s; }
+        </style>
 
-        <div class="feature">
-          <label>User-Friendly Design</label>
-          <p>Enjoy a clean interface built for speed and ease of use.</p>
+        <h1 class="text-7xl md:text-8xl font-black mb-6 z-10 fade-in text-gradient-hero">
+            PrivChat
+        </h1>
+        <p class="tagline text-2xl md:text-3xl font-light text-gray-200 mb-12 z-10 fade-in fade-in-1">
+            Private. Secure. Effortless Communication.
+        </p>
+        <button class="px-10 py-5 bg-white text-indigo-700 rounded-full text-2xl font-bold hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 shadow-custom-lg z-10 fade-in fade-in-2">
+            Get Started Now
+        </button>
+    </header>
+
+    <main class="container mx-auto py-20 px-6 flex-grow">
+        <section id="features" class="mb-24">
+            <h2 class="text-5xl font-extrabold text-center mb-16 text-white fade-in fade-in-3">
+                Key <span class="text-indigo-400">Features</span>
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="feature bg-gray-800 rounded-2xl p-10 shadow-custom-lg transition-all duration-300 hover:scale-105 hover:bg-gray-700 border border-gray-700 flex flex-col items-center text-center fade-in fade-in-4">
+                    <div class="mb-6 text-indigo-400">
+                        <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    </div>
+                    <h3 class="text-3xl font-semibold text-white mb-4">End-to-End Encryption</h3>
+                    <p class="text-gray-300 text-lg leading-relaxed">PrivChat uses robust end-to-end encryption to ensure your conversations remain completely confidential and secure from prying eyes.</p>
+                </div>
+
+                <div class="feature bg-gray-800 rounded-2xl p-10 shadow-custom-lg transition-all duration-300 hover:scale-105 hover:bg-gray-700 border border-gray-700 flex flex-col items-center text-center fade-in fade-in-5">
+                    <div class="mb-6 text-teal-400">
+                        <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-1.25-3M15 10V5a3 3 0 00-3-3H9a3 3 0 00-3 3v5m6 0h.01M12 12h.01M12 15h.01M12 18h.01"></path></svg>
+                    </div>
+                    <h3 class="text-3xl font-semibold text-white mb-4">Seamless Cross-Platform</h3>
+                    <p class="text-gray-300 text-lg leading-relaxed">Access your secure chats effortlessly from any device – desktop, tablet, or mobile – anytime, anywhere, with perfect synchronization.</p>
+                </div>
+
+                <div class="feature bg-gray-800 rounded-2xl p-10 shadow-custom-lg transition-all duration-300 hover:scale-105 hover:bg-gray-700 border border-gray-700 flex flex-col items-center text-center fade-in fade-in-4">
+                    <div class="mb-6 text-purple-400">
+                        <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m1.636 6.364l.707-.707M6 9H3.6M18 15h2.4M12 19.5V21m-4.5-9H4.5m15 0h-2.4m-6.364-1.636l-.707-.707M12 4.5V3m4.5 9H19.5m-15 0h-2.4m-6.364 1.636l-.707-.707M12 19.5V21m-4.5-9H4.5m15 0h-2.4"></path></svg>
+                    </div>
+                    <h3 class="text-3xl font-semibold text-white mb-4">Intuitive User Experience</h3>
+                    <p class="text-gray-300 text-lg leading-relaxed">Enjoy a beautifully designed, clean, and intuitive interface built for speed, ease of use, and a delightful messaging experience.</p>
+                </div>
+
+                <div class="feature bg-gray-800 rounded-2xl p-10 shadow-custom-lg transition-all duration-300 hover:scale-105 hover:bg-gray-700 border border-gray-700 flex flex-col items-center text-center fade-in fade-in-5">
+                    <div class="mb-6 text-red-400">
+                        <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7"></path></svg>
+                    </div>
+                    <h3 class="text-3xl font-semibold text-white mb-4">Decentralized & Serverless</h3>
+                    <p class="text-gray-300 text-lg leading-relaxed">PrivChat operates without central servers, ensuring your data is never stored by us, maximizing your privacy and confidentiality.</p>
+                </div>
+
+                <div class="feature bg-gray-800 rounded-2xl p-10 shadow-custom-lg transition-all duration-300 hover:scale-105 hover:bg-gray-700 border border-gray-700 flex flex-col items-center text-center fade-in fade-in-4">
+                    <div class="mb-6 text-yellow-400">
+                        <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path></svg>
+                    </div>
+                    <h3 class="text-3xl font-semibold text-white mb-4">Instant Messaging</h3>
+                    <p class="text-gray-300 text-lg leading-relaxed">Experience real-time communication with lightning-fast message delivery, keeping you connected without delay.</p>
+                </div>
+
+                <div class="feature bg-gray-800 rounded-2xl p-10 shadow-custom-lg transition-all duration-300 hover:scale-105 hover:bg-gray-700 border border-gray-700 flex flex-col items-center text-center fade-in fade-in-5">
+                    <div class="mb-6 text-cyan-400">
+                        <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2v5a2 2 0 01-2 2H9a2 2 0 01-2-2V9a2 2 0 012-2h6zM12 15h.01"></path></svg>
+                    </div>
+                    <h3 class="text-3xl font-semibold text-white mb-4">Secure PIN Rooms</h3>
+                    <p class="text-gray-300 text-lg leading-relaxed">Create and join private chat rooms using a unique PIN, ensuring only invited participants can access the conversation.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="get-started" class="cta bg-gradient-to-br from-indigo-600 to-purple-700 rounded-3xl p-16 text-center shadow-custom-xl transform transition-all duration-500 hover:scale-[1.01] mb-24 fade-in fade-in-4">
+            <h2 class="text-5xl font-extrabold text-white mb-6 leading-tight">
+                Ready to Experience <span class="text-yellow-300">True Privacy</span>?
+            </h2>
+            <p class="text-xl text-gray-200 mb-10 leading-relaxed">
+                Join thousands of users who trust PrivChat for secure, private, and effortless messaging.
+                No servers, no data logging, just pure communication.
+            </p>
+            <button class="px-12 py-6 bg-white text-indigo-700 rounded-full text-2xl font-bold hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 shadow-custom-lg">
+                Start Your Secure Chat Now!
+            </button>
+        </section>
+    </main>
+
+    <footer id="contact" class="bg-gray-900 py-12 text-center text-gray-500 text-lg border-t border-gray-800">
+        <p class="mb-4">&copy; 2025 PrivChat. All rights reserved.</p>
+        <p>Designed with <span class="text-red-500">&hearts;</span> for your privacy.</p>
+        <div class="flex justify-center space-x-6 mt-6">
+            <a href="#" class="text-gray-400 hover:text-indigo-400 transition-colors duration-300">Privacy Policy</a>
+            <a href="#" class="text-gray-400 hover:text-indigo-400 transition-colors duration-300">Terms of Service</a>
         </div>
+    </footer>
 
-        <div class="feature">
-          <label>Severless</label>
-          <p>PrivChat uses no server to store your data, for providing a secure and confidential experience.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Call to Action -->
-    <section id="get-started" class="cta">
-      <h2>Get Started with PrivChat</h2>
-      <p>Join thousands of users who trust PrivChat for secure and private messaging.</p>
-      <button>Get Started</button>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer id="contact">
-    <p>&copy; 2025 PrivChat. All rights reserved.</p>
-  </footer>
 </body>
 </html>
