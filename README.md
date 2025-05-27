@@ -1,7 +1,3 @@
-Absolutely! Here’s a **detailed overview** of your project, structured professionally to showcase **PrivChat** effectively.  
-
----
-
 # **PrivChat**  
 
 ## 📌 **Title**  
@@ -99,8 +95,5 @@ PrivChat is licensed under the **MIT License**. Feel free to contribute, modify,
 
 🔹 Developed by **Harish** – [GitHub](https://github.com/Harish2B3)  
 🔹 For queries or suggestions, please reach out via GitHub Issues.  
-
----
-
-This detailed documentation covers every crucial aspect of your **PrivChat** project, making it informative and **impressive**! Let me know if you'd like more refinements or additional details. 🚀  
+ 
 
